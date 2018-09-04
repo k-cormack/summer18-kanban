@@ -1,7 +1,7 @@
 <template>
   <div class="board">
-    <!-- This is a single Board View!!!
     {{boardId}}
+    <!-- This is a single Board View!!!
     <form @submit.prevent="addList">
       <input type="text" placeholder="title" v-model="newList.title" required>
       <input type="text" placeholder="description" v-model="newList.description">
