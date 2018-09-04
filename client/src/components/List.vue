@@ -1,7 +1,7 @@
 <template>
   <div class="list">
-    This is a single List View!!!
-    {{listId}}
+    This is a single List Component!!!
+    {{listData._id}}
     <form @submit.prevent="addTask">
       <!-- <input type="text" placeholder="title" v-model="newTask.title" required> -->
       <input type="text" placeholder="description" v-model="newTask.description">
@@ -23,6 +23,7 @@ export default {
       this.$router.push({ name: "login" });
     }
   },
+  props: ["listData"],
     data() {
     return {
         newTask: {

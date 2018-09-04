@@ -1,43 +1,63 @@
 <template>
   <div class="board">
     This is a single Board View!!!
-    {{boardId}}
+    <!-- {{boardId}} -->
     <form @submit.prevent="addList">
       <input type="text" placeholder="title" v-model="newList.title" required>
       <input type="text" placeholder="description" v-model="newList.description">
       <button type="submit">Create New List</button>
     </form>
-    <div v-for="list in lists" :key="list._id">
+    <div v-for="l in lists" :key="list._id">
       <router-link :to="{name: 'list', params: {listId: list._id}}">{{list.title}}</router-link>
-      <button @click="deleteList(list._id)">DELETE LIST</button>
+      <!-- <List :listData='l'/> -->
     </div>
+    <button @click="deleteList(list._id)">DELETE LIST</button>
   </div>
 </template>
 
 <script>
-export default {
-  name: "board",
-  created() {
-    //blocks users not logged in
-    if (!this.$store.state.user._id) {
-      this.$router.push({ name: "login" });
-    }
-  },
-    data() {
-    return {
-      newList: {
-        title: "",
-        description: ""
-      }
-    };
-  },
+  import List from '@/components/List';
 
-  computed: {
-    lists(){
-      return this.$store.state.lists
-    }
-  },
-  
-  props: ["boardId"]
-};
+  export default {
+    name: "board",
+    created() {
+      //blocks users not logged in
+      if (!this.$store.state.user._id) {
+        this.$router.push({ name: "login" });
+      }
+    },
+    mounted(){
+      this.$store.dispatch(boardId)
+      //get lists dispatch this.boardId
+    },
+    data() {
+      return {
+        newList: {
+          title: "",
+          description: ""
+        }
+      };
+    },
+
+    computed: {
+      lists() {
+        return this.$store.state.lists
+      }
+    },
+    methods: {
+      addList() {
+        this.$store.dispatch("addList", this.newList);
+        this.newList = { title: "", description: "" };
+      },
+      deleteList(ListId) {
+        this.$store.dispatch("deleteList", ListId);
+      }
+    },
+
+    components: {
+      List
+    },
+
+    props: ["boardId"]
+  };
 </script>

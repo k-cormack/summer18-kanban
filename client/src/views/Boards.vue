@@ -46,6 +46,7 @@ export default {
     deleteBoard(boardId) {
       this.$store.dispatch("deleteBoard", boardId);
     }
-  }
+  },
+  
 };
 </script>
