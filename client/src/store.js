@@ -23,7 +23,8 @@ export default new Vuex.Store({
     boards: [],
     activeBoard: {},
     lists: [],
-    tasks: []
+    tasks: [],
+    comments: [],
   },
   mutations: {
     setUser(state, user) {
@@ -34,6 +35,9 @@ export default new Vuex.Store({
     },
     setLists(state, lists) {
       state.lists = lists  
+    },
+    setComments(state, comments) {
+      state.comments = comments
     },
   },
   actions: {
@@ -93,7 +97,37 @@ export default new Vuex.Store({
       .then(res =>{
         dispatch('getLists')
       })
-    }
+    },
+
+    deleteList({commit, dispatch}, listId) {
+      api.delete('list/' + listId)
+      .then(res => {
+        dispatch('getLists')
+      })
+    },
+
+    //TASK Stuff
+
+    getTasks({commit, dispatch}) {
+      api.get('task')
+      .then(res => {
+        commit('setTasks', res.data)
+      })
+    },
+
+    addTask({commit, dispatch}, taskData) {
+      api.post('task', taskData) 
+      .then(res =>{
+        dispatch('getTasks')
+      })
+    },
+
+    deleteTask({commit, dispatch}, taskId) {
+      api.delete('task/' + taskId)
+      .then(res => {
+        dispatch('getTasks')
+      })
+    },
 
 
 

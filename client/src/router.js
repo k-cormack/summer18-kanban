@@ -8,6 +8,8 @@ import Board from './views/Board.vue'
 import Login from './views/Login.vue'
 //@ts-ignore
 import List from './components/List.vue'
+//@ts-ignore
+import Task from './components/Task.vue'
 
 Vue.use(Router)
 
@@ -29,6 +31,12 @@ export default new Router({
     name: 'list',
     props: true,
     component: List
+    },
+    {
+      path: '/task/:taskId',
+      name: 'task',
+      props: true,
+      component: Task
     },
     {
       path: '/login',
