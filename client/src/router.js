@@ -7,7 +7,7 @@ import Board from './views/Board.vue'
 // @ts-ignore
 import Login from './views/Login.vue'
 //@ts-ignore
-import List from './views/List.vue'
+import List from './components/List.vue'
 
 Vue.use(Router)
 

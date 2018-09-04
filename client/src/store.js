@@ -31,7 +31,10 @@ export default new Vuex.Store({
     },
     setBoards(state, boards) {
       state.boards = boards
-    }
+    },
+    setLists(state, lists) {
+      state.lists = lists  
+    },
   },
   actions: {
     //AUTH STUFF

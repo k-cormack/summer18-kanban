@@ -23,12 +23,21 @@ export default {
       this.$router.push({ name: "login" });
     }
   },
+    data() {
+    return {
+      newList: {
+        title: "",
+        description: ""
+      }
+    };
+  },
 
   computed: {
     lists(){
       return this.$store.state.lists
     }
   },
+  
   props: ["boardId"]
 };
 </script>
