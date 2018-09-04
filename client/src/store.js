@@ -74,7 +74,11 @@ export default new Vuex.Store({
         .then(res => {
           dispatch('getBoards')
         })
-    }
+    },
+
+    //LIST Stuff
+
+    
 
   }
 })

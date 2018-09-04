@@ -1,6 +1,6 @@
 <template>
   <div class="board">
-    This is a single Board View!!!
+    <!-- This is a single Board View!!!
     {{boardId}}
     <form @submit.prevent="addList">
       <input type="text" placeholder="title" v-model="newList.title" required>
@@ -10,7 +10,7 @@
     <div v-for="list in lists" :key="list._id">
       <router-link :to="{name: 'list', params: {listId: list._id}}">{{list.title}}</router-link>
       <button @click="deleteList(list._id)">DELETE LIST</button>
-    </div>
+    </div> -->
   </div>
 </template>
 
