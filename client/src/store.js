@@ -23,6 +23,7 @@ export default new Vuex.Store({
     boards: [],
     activeBoard: {},
     lists: [],
+    tasks: []
   },
   mutations: {
     setUser(state, user) {
@@ -77,8 +78,21 @@ export default new Vuex.Store({
     },
 
     //LIST Stuff
+    getLists({commit, dispatch}) {
+      api.get('list')
+      .then(res => {
+        commit('setLists', res.data)
+      })
+    },
 
-    
+    addList({commit, dispatch}, listData) {
+      api.post('list', listData) 
+      .then(res =>{
+        dispatch('getLists')
+      })
+    }
+
+
 
   }
 })
