@@ -7,9 +7,9 @@
       <input type="text" placeholder="description" v-model="newList.description">
       <button type="submit">Create New List</button>
     </form>
-    <div v-for="l in lists" :key="list._id">
-      <router-link :to="{name: 'list', params: {listId: list._id}}">{{list.title}}</router-link>
-      <!-- <List :listData='l'/> -->
+    <div v-for="list in lists" :key="list._id">
+      <!-- <router-link :to="{name: 'list', params: {listId: list._id}}">{{list.title}}</router-link> -->
+      <List :listData='list'/>
     </div>
     <button @click="deleteList(list._id)">DELETE LIST</button>
   </div>
@@ -27,8 +27,8 @@
       }
     },
     mounted(){
-      this.$store.dispatch(boardId)
-      //get lists dispatch this.boardId
+      this.$store.dispatch("getLists", this.boardId)
+      
     },
     data() {
       return {

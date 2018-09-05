@@ -36,7 +36,6 @@ export default {
     tasks(){
       return this.$store.state.tasks
     }
-  },
-  props: ["listId"]
+  }
 };
 </script>
