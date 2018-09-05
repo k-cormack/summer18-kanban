@@ -23,6 +23,22 @@ export default {
       this.$router.push({ name: "login" });
     }
   },
+  data() {
+      return {
+        newTask: {
+          description: ""
+        }
+      };
+    },
+  methods: {
+    addTask() {
+      this.$store.dispatch("addTask", this.newTask);
+      this.newTask = { title: "", description: "" };
+    },
+    deleteTask(taskId) {
+      this.$store.dispatch("deleteTask", taskId);
+    }
+  },
   props: ["listData"],
     data() {
     return {

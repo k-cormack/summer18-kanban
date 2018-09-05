@@ -39,6 +39,9 @@ export default new Vuex.Store({
     setComments(state, comments) {
       state.comments = comments
     },
+    setTasks(state, tasks) {
+      state.tasks = tasks
+    },
   },
   actions: {
     //AUTH STUFF
