@@ -1,6 +1,7 @@
 <template>
   <div class="board">
-    This is a single Board View!!!
+    {{board.title}}
+    <hr>
     <!-- {{boardId}} -->
     <form @submit.prevent="addList">
       <input type="text" placeholder="title" v-model="newList.title" required>
@@ -27,7 +28,8 @@
       }
     },
     mounted() {
-      this.$store.dispatch("getLists", this.boardId)
+      this.$store.dispatch('getBoard', this.$route.params.boardId)
+      this.$store.dispatch("getLists", this.$route.params.boardId)
 
     },
     data() {
@@ -43,6 +45,10 @@
     computed: {
       lists() {
         return this.$store.state.lists
+
+      },
+      board() {
+        return this.$store.state.activeBoard
       }
     },
     methods: {

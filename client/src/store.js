@@ -35,8 +35,11 @@ export default new Vuex.Store({
     setBoards(state, boards) {
       state.boards = boards
     },
+    setBoard(state, board) {
+      state.activeBoard = board
+    },
     setLists(state, lists) {
-      state.lists = lists  
+      state.lists = lists
     },
     setTasks(state, tasks) {
       state.tasks = tasks
@@ -76,6 +79,12 @@ export default new Vuex.Store({
           commit('setBoards', res.data)
         })
     },
+    getBoard({ commit, dispatch }, boardId) {
+      api.get('boards/' + boardId)
+        .then(res => {
+          commit('setBoard', res.data)
+        })
+    },
     addBoard({ commit, dispatch }, boardData) {
       api.post('boards', boardData)
         .then(serverBoard => {
@@ -90,74 +99,74 @@ export default new Vuex.Store({
     },
 
     //LIST Stuff
-    getLists({commit, dispatch}) {
+    getLists({ commit, dispatch }) {
       api.get('list')
-      .then(res => {
-        commit('setLists', res.data)
-      })
+        .then(res => {
+          commit('setLists', res.data)
+        })
     },
 
-    addList({commit, dispatch}, listData) {
-      api.post('list', listData) 
-      .then(res =>{
-        dispatch('getLists')
-      })
+    addList({ commit, dispatch }, listData) {
+      api.post('list', listData)
+        .then(res => {
+          dispatch('getLists')
+        })
     },
 
-    deleteList({commit, dispatch}, listId) {
+    deleteList({ commit, dispatch }, listId) {
       api.delete('list/' + listId)
-      .then(res => {
-        dispatch('getLists')
-      })
+        .then(res => {
+          dispatch('getLists')
+        })
     },
 
     //TASK Stuff
 
-    getTasks({commit, dispatch}) {
+    getTasks({ commit, dispatch }) {
       api.get('task')
-      .then(res => {
-        commit('setTasks', res.data)
-      })
+        .then(res => {
+          commit('setTasks', res.data)
+        })
     },
 
-    addTask({commit, dispatch}, taskData) {
-      api.post('task', taskData) 
-      .then(res =>{
-        dispatch('getTasks')
-      })
+    addTask({ commit, dispatch }, taskData) {
+      api.post('task', taskData)
+        .then(res => {
+          dispatch('getTasks')
+        })
     },
 
-    deleteTask({commit, dispatch}, taskId) {
+    deleteTask({ commit, dispatch }, taskId) {
       api.delete('task/' + taskId)
-      .then(res => {
-        dispatch('getTasks')
-      })
+        .then(res => {
+          dispatch('getTasks')
+        })
     },
 
     //COMMENT Stuff
 
-    getComments({commit, dispatch}, payload) {
-      api.get('task/'+payload.taskId + '/comments/')
-      .then(res => {
-        commit('setComments', res.data)
-      })
+    getComments({ commit, dispatch }, payload) {
+      api.get('task/' + payload.taskId + '/comments/')
+        .then(res => {
+          commit('setComments', res.data)
+        })
     },
 
-    addComment({commit, dispatch}, payload) {
+    addComment({ commit, dispatch }, payload) {
       debugger
-      api.post('task/'+payload.taskId + '/comments/', payload.data) 
-      .then(res =>{
-        dispatch('getComments', payload)
-      })
+      api.post('task/' + payload.taskId + '/comments/', payload.data)
+        .then(res => {
+          dispatch('getComments', payload)
+        })
     },
 
-    deleteComment({commit, dispatch}, payload) {
-      api.delete(payload.taskId+'/comments/' + payload.commentId)
-      .then(res => {
-        dispatch('getComments')
-      })
+    deleteComment({ commit, dispatch }, payload) {
+      api.delete(payload.taskId + '/comments/' + payload.commentId)
+        .then(res => {
+          dispatch('getComments')
+        })
     },
 
 
-   }
+  }
 })
