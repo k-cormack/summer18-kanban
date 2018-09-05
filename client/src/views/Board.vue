@@ -9,8 +9,8 @@
     </form>
     <div v-for="list in lists" :key="list._id">
       <!-- <router-link :to="{name: 'list', params: {listId: list._id}}">{{list.title}}</router-link> -->
-      <List :listData='list'/>
-    <button @click="deleteList(list._id)">DELETE LIST</button>
+      <List :listData='list' />
+      <button @click="deleteList(list._id)">DELETE LIST</button>
     </div>
   </div>
 </template>
@@ -26,9 +26,9 @@
         this.$router.push({ name: "login" });
       }
     },
-    mounted(){
+    mounted() {
       this.$store.dispatch("getLists", this.boardId)
-      
+
     },
     data() {
       return {
@@ -61,3 +61,5 @@
     props: ["boardId"]
   };
 </script>
+<style scoped>
+</style>

@@ -34,12 +34,12 @@
         },
         methods: {
             addComment() {
-                this.$store.dispatch("addComment", {data: this.newComment, taskId: this.taskId});
+                this.$store.dispatch("addComment", { data: this.newComment, taskId: this.taskId });
                 debugger
                 this.newComment = { description: "" };
             },
             deleteComment(commentId) {
-                this.$store.dispatch("deleteComment", {commentId, taskId: this.taskId});
+                this.$store.dispatch("deleteComment", { commentId, taskId: this.taskId });
             }
 
         },
@@ -53,3 +53,5 @@
         props: ["taskId", "taskDescription"]
     };
 </script>
+<style scoped>
+</style>
