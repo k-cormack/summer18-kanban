@@ -1,5 +1,5 @@
 <template>
-  <div class="board">
+  <div class="board justify-content-center">
     <h1>{{board.title}}</h1>
     <h5>{{board.description}}</h5>
     <hr>
@@ -9,7 +9,7 @@
       <button type="submit">Create New List</button>
     </form>
     <div v-for="list in lists" :key="list._id">
-      <List v-for="list in lists" :listData='list' :key="list._id" />
+      <List class="col-6" v-for="list in lists" :listData='list' :key="list._id" />
 
       <button @click="deleteList(list._id)">Delete List</button>
     </div>
@@ -53,7 +53,7 @@
     },
     methods: {
       addList() {
-        debugger
+
         // this.newList.boardId = this.boardId
         this.$store.dispatch("addList", this.newList);
         this.newList = { title: "", description: "" };

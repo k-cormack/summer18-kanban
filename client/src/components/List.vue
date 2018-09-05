@@ -1,16 +1,18 @@
 <template>
-  <div class="list">
-    <h1>
-      List View
-    </h1>
-    <hr> Title:{{listData.title}} Description:{{listData.description}}
+  <div class="list justify-content-center">
+    <hr>
+    <h2>
+      Lists
+    </h2>
+    <h3>{{listData.title}}</h3>
+    <h5>{{listData.description}}</h5>
+
+
     <form @submit.prevent="addTask">
-      <!-- <input type="text" placeholder="title" v-model="newTask.title" required> -->
       <input type="text" placeholder="description" v-model="newTask.description">
       <button type="submit">Create New Task</button>
     </form>
-    <task v-for="task in tasks" :taskData='task' :key="task._id" />
-
+    <task class="col-3" v-for="task in tasks" :taskData='task' :key="task._id" />
   </div>
 </template>
 
