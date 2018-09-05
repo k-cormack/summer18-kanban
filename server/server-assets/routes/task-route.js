@@ -66,28 +66,32 @@ router.delete('/:id', (req, res, next) => {
 //route: tasks/:taskId/comments data: comment
 router.post('/:taskId/comments', (req, res, next)=>{
   req.body.authorId = req.session.uid
-  Task.findByIdAndUpdate(req.params.taskId, { $push: { comments: req.body}}, {new: true})
-    .then(task=>{
-      res.send(task)
-    })
-    .catch(err=>{
-      res.status(400).send("it broke")
-    })
-  // Task.findById(req.params.taskId)
+
+  //----------------------------------------------------S
+  //SUPER COOLER WAY TO ACHIEVE THE SAME AS BELOW
+  // Task.findByIdAndUpdate(req.params.taskId, { $push: { comments: req.body}}, {new: true})
   //   .then(task=>{
-  //     task.comments = task.comments.concat(req.body)
-  //     task.save((err) =>{
-  //       if (err){
-  //         console.log(err)
-  //         return res.status(500).send("failed to add comment")
-  //       }
-  //       return res.send(task)
-  //     })
+  //     res.send(task)
   //   })
   //   .catch(err=>{
-  //     console.log(err)
-  //     res.status(400).send('broke')
+  //     res.status(400).send("it broke")
   //   })
+  //----------------------------------------------------
+  Task.findById(req.params.taskId)
+    .then(task=>{
+      task.comments = task.comments.concat(req.body)
+      task.save((err) =>{
+        if (err){
+          console.log(err)
+          return res.status(500).send("failed to add comment")
+        }
+        return res.send(task)
+      })
+    })
+    .catch(err=>{
+      console.log(err)
+      res.status(400).send('broke')
+    })
 })
 
 router.delete('/:taskId/comments/:commentId', (req, res, next)=>{
