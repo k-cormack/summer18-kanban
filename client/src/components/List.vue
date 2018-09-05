@@ -1,7 +1,8 @@
 <template>
   <div class="list">
-
-    This is a single List Component!!!
+    <h1>
+      List View
+    </h1>
     <hr> Title:{{listData.title}} Description:{{listData.description}}
     <form @submit.prevent="addTask">
       <!-- <input type="text" placeholder="title" v-model="newTask.title" required> -->

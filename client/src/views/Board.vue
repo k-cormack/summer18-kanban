@@ -1,18 +1,17 @@
 <template>
   <div class="board">
-    {{board.title}}
+    <h1>{{board.title}}</h1>
+    <h5>{{board.description}}</h5>
     <hr>
-    <!-- {{boardId}} -->
     <form @submit.prevent="addList">
       <input type="text" placeholder="title" v-model="newList.title" required>
       <input type="text" placeholder="description" v-model="newList.description">
       <button type="submit">Create New List</button>
     </form>
     <div v-for="list in lists" :key="list._id">
-      <!-- <router-link :to="{name: 'list', params: {listId: list._id}}">{{list.title}}</router-link> -->
       <List v-for="list in lists" :listData='list' :key="list._id" />
 
-      <button @click="deleteList(list._id)">DELETE LIST</button>
+      <button @click="deleteList(list._id)">Delete List</button>
     </div>
   </div>
 </template>
