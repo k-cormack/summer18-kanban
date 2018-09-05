@@ -1,13 +1,14 @@
 <template>
     <div class="task">
-        This is a single Task View!!! {{taskId}} {{taskDescription}}
+        This is a single Task View!!! {{taskData._id}} {{taskData.description}}
         <form @submit.prevent="addComment">
             <!-- <input type="text" placeholder="title" v-model="newTask.title" required> -->
             <input type="text" placeholder="comment" v-model="newComment.description">
             <button type="submit">Add Comment</button>
         </form>
+        <button @click="deleteTask(taskData._id)">DELETE Task</button>
         <div v-for="comment in comments" :key="comment._id">
-                {{comment.description}}
+            {{comment.description}}
             <!-- <router-link :to="{name: 'comment', params: {commentId: comment._id}}">{{comment.description}}</router-link> -->
             <button @click="deleteComment(comment._id)">DELETE Comment</button>
         </div>
@@ -40,6 +41,9 @@
             },
             deleteComment(commentId) {
                 this.$store.dispatch("deleteComment", { commentId, taskId: this.taskId });
+            },
+            deleteTask(taskId) {
+                this.$store.dispatch("deleteTask", taskId);
             }
 
         },
@@ -50,7 +54,7 @@
                 return this.$store.state.comments
             }
         },
-        props: ["taskId", "taskDescription"]
+        props: ["taskData", "taskDescription"]
     };
 </script>
 <style scoped>

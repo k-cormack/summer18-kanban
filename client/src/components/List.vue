@@ -8,10 +8,8 @@
       <input type="text" placeholder="description" v-model="newTask.description">
       <button type="submit">Create New Task</button>
     </form>
-    <div v-for="task in tasks" :key="task._id">
-      <router-link :to="{name: 'task', params: {taskId: task._id}}">{{task.description}}</router-link>
-      <button @click="deleteTask(task._id)">DELETE Task</button>
-    </div>
+    <task v-for="task in tasks" :taskData='task' :key="task._id" />
+
   </div>
 </template>
 
@@ -44,9 +42,7 @@
         this.$store.dispatch("addTask", this.newTask);
         this.newTask = { title: "", description: "", listId: this.listData._id };
       },
-      deleteTask(taskId) {
-        this.$store.dispatch("deleteTask", taskId);
-      }
+
     },
     props: ["listData"],
 

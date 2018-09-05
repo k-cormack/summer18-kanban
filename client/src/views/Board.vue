@@ -10,7 +10,8 @@
     </form>
     <div v-for="list in lists" :key="list._id">
       <!-- <router-link :to="{name: 'list', params: {listId: list._id}}">{{list.title}}</router-link> -->
-      <List :listData='list' />
+      <List v-for="list in lists" :listData='list' :key="list._id" />
+
       <button @click="deleteList(list._id)">DELETE LIST</button>
     </div>
   </div>
