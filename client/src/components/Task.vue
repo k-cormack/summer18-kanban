@@ -1,7 +1,8 @@
 <template>
   <div class="task">
     This is a single Task View!!!
-    {{TaskId}}
+    {{taskId}}
+    {{taskDescription}}
     <form @submit.prevent="addComment">
       <!-- <input type="text" placeholder="title" v-model="newTask.title" required> -->
       <input type="text" placeholder="description" v-model="newComment.description">
@@ -30,12 +31,20 @@ export default {
       }
     };
   },
+  addComment() {
+      this.$store.dispatch("addComment", this.newComment);
+      this.newComment = { title: "", description: "" };
+    },
+    deleteComment(commentId) {
+      this.$store.dispatch("deleteComment", commentId);
+    },
+  
 
   computed: {
     comments(){
       return this.$store.state.comments
     }
   },
-  props: ["taskId"]
+  props: ["taskId", "taskDescription"]
 };
 </script>

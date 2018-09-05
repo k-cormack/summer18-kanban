@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import Task from '@/components/Task'
+
 export default {
   name: "list",
   created() {
@@ -30,6 +32,10 @@ export default {
         }
       };
     },
+  mounted() {
+    this.$store.dispatch('getTasks', this.listId)
+  },
+
   methods: {
     addTask() {
       this.$store.dispatch("addTask", this.newTask);
@@ -40,18 +46,15 @@ export default {
     }
   },
   props: ["listData"],
-    data() {
-    return {
-        newTask: {
-        description: ""
-      }
-    };
-  },
+    
 
   computed: {
     tasks(){
       return this.$store.state.tasks
     }
+  },
+  components: {
+    Task
   }
 };
 </script>

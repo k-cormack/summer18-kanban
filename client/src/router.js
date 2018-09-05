@@ -9,7 +9,7 @@ import Login from './views/Login.vue'
 //@ts-ignore
 import List from './components/List.vue'
 //@ts-ignore
-import Task from './components/Task.vue'
+import Task from './components/Task'
 
 Vue.use(Router)
 
