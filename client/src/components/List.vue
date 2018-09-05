@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-    This is a single List Component!!! {{listData._id}}
+    This is a single List Component!!! {{listData.description}}
     <form @submit.prevent="addTask">
       <!-- <input type="text" placeholder="title" v-model="newTask.title" required> -->
       <input type="text" placeholder="description" v-model="newTask.description">
