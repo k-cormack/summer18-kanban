@@ -1,7 +1,6 @@
 <template>
   <div class="list">
-    This is a single List Component!!!
-    {{listData._id}}
+    This is a single List Component!!! {{listData._id}}
     <form @submit.prevent="addTask">
       <!-- <input type="text" placeholder="title" v-model="newTask.title" required> -->
       <input type="text" placeholder="description" v-model="newTask.description">
@@ -15,46 +14,48 @@
 </template>
 
 <script>
-import Task from '@/components/Task'
+  import Task from '@/components/Task'
 
-export default {
-  name: "list",
-  created() {
-    //blocks users not logged in
-    if (!this.$store.state.user._id) {
-      this.$router.push({ name: "login" });
-    }
-  },
-  data() {
+  export default {
+    name: "list",
+    created() {
+      //blocks users not logged in
+      if (!this.$store.state.user._id) {
+        this.$router.push({ name: "login" });
+      }
+    },
+    data() {
       return {
         newTask: {
           description: ""
         }
       };
     },
-  mounted() {
-    this.$store.dispatch('getTasks', this.listId)
-  },
-
-  methods: {
-    addTask() {
-      this.$store.dispatch("addTask", this.newTask);
-      this.newTask = { title: "", description: "" };
+    mounted() {
+      this.$store.dispatch('getTasks', this.listId)
     },
-    deleteTask(taskId) {
-      this.$store.dispatch("deleteTask", taskId);
-    }
-  },
-  props: ["listData"],
-    
 
-  computed: {
-    tasks(){
-      return this.$store.state.tasks
+    methods: {
+      addTask() {
+        this.$store.dispatch("addTask", this.newTask);
+        this.newTask = { title: "", description: "" };
+      },
+      deleteTask(taskId) {
+        this.$store.dispatch("deleteTask", taskId);
+      }
+    },
+    props: ["listData"],
+
+
+    computed: {
+      tasks() {
+        return this.$store.state.tasks
+      }
+    },
+    components: {
+      Task
     }
-  },
-  components: {
-    Task
-  }
-};
+  };
 </script>
+<style scoped>
+</style>

@@ -64,13 +64,13 @@ router.delete('/:id', (req, res, next) => {
 })
 
 //route: tasks/:taskId/comments data: comment
-router.post('/:taskId/comments', (req, res, next)=>{
+router.post('/:taskId/comments', (req, res, next) => {
   req.body.authorId = req.session.uid
-  Task.findByIdAndUpdate(req.params.taskId, { $push: { comments: req.body}}, {new: true})
-    .then(task=>{
+  Task.findByIdAndUpdate(req.params.taskId, { $push: { comments: req.body } }, { new: true })
+    .then(task => {
       res.send(task)
     })
-    .catch(err=>{
+    .catch(err => {
       res.status(400).send("it broke")
     })
   // Task.findById(req.params.taskId)
@@ -90,12 +90,12 @@ router.post('/:taskId/comments', (req, res, next)=>{
   //   })
 })
 
-router.delete('/:taskId/comments/:commentId', (req, res, next)=>{
+router.delete('/:taskId/comments/:commentId', (req, res, next) => {
   Task.findById(req.params.taskId)
-    .then(task=>{
+    .then(task => {
       task.comments.id(req.params.commentId).remove()
-      task.save((err) =>{
-        if (err){
+      task.save((err) => {
+        if (err) {
           console.log(err)
           return res.status(500).send("failed to remove comment")
         }

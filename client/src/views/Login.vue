@@ -19,29 +19,37 @@
 </template>
 
 <script>
-export default {
-  name: "login",
-  data() {
-    return {
-      loginForm: true,
-      creds: {
-        email: "",
-        password: ""
-      },
-      newUser: {
-        email: "",
-        password: "",
-        name: ""
-      }
-    };
-  },
-  methods: {
-    register() {
-      this.$store.dispatch("register", this.newUser);
+  export default {
+    name: "login",
+    data() {
+      return {
+        loginForm: true,
+        creds: {
+          email: "",
+          password: ""
+        },
+        newUser: {
+          email: "",
+          password: "",
+          name: ""
+        }
+      };
     },
-    loginUser() {
-      this.$store.dispatch("login", this.creds);
+    methods: {
+      register() {
+        this.$store.dispatch("register", this.newUser);
+      },
+      loginUser() {
+        this.$store.dispatch("login", this.creds);
+      }
     }
-  }
-};
+  };
 </script>
+<style scoped>
+  .login {
+    color: white;
+    background-image: linear-gradient(to top, #ffffff 0%, #087077 100%);
+    height: 700px;
+    text-shadow: 2px 2px 3px black;
+  }
+</style>
