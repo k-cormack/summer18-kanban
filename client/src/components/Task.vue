@@ -3,11 +3,12 @@
         This is a single Task View!!! {{taskId}} {{taskDescription}}
         <form @submit.prevent="addComment">
             <!-- <input type="text" placeholder="title" v-model="newTask.title" required> -->
-            <input type="text" placeholder="description" v-model="newComment.description">
+            <input type="text" placeholder="comment" v-model="newComment.description">
             <button type="submit">Add Comment</button>
         </form>
         <div v-for="comment in comments" :key="comment._id">
-            <router-link :to="{name: 'comment', params: {commentId: comment._id}}">{{comment.description}}</router-link>
+                {{comment.description}}
+            <!-- <router-link :to="{name: 'comment', params: {commentId: comment._id}}">{{comment.description}}</router-link> -->
             <button @click="deleteComment(comment._id)">DELETE Comment</button>
         </div>
     </div>
@@ -35,7 +36,6 @@
         methods: {
             addComment() {
                 this.$store.dispatch("addComment", { data: this.newComment, taskId: this.taskId });
-                debugger
                 this.newComment = { description: "" };
             },
             deleteComment(commentId) {

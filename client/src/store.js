@@ -36,11 +36,11 @@ export default new Vuex.Store({
     setLists(state, lists) {
       state.lists = lists  
     },
-    setComments(state, comments) {
-      state.comments = comments
-    },
     setTasks(state, tasks) {
       state.tasks = tasks
+    },
+    setComments(state, comments) {
+      state.comments = comments
     },
   },
   actions: {
@@ -134,8 +134,8 @@ export default new Vuex.Store({
 
     //COMMENT Stuff
 
-    getComments({commit, dispatch}) {
-      api.get('/:taskId/comments/')
+    getComments({commit, dispatch}, payload) {
+      api.get('task/'+payload.taskId + '/comments/', payload.data)
       .then(res => {
         commit('setComments', res.data)
       })
@@ -144,7 +144,7 @@ export default new Vuex.Store({
     addComment({commit, dispatch}, payload) {
       api.post('task/'+payload.taskId + '/comments/', payload.data) 
       .then(res =>{
-        dispatch('getComments')
+        dispatch('getComments', res.data)
       })
     },
 
