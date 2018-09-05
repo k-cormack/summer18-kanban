@@ -23,7 +23,9 @@ export default new Vuex.Store({
     boards: [],
     activeBoard: {},
     lists: [],
-    tasks: [],
+    tasks: {
+      listId: []
+    },
     comments: [],
   },
   mutations: {
@@ -135,16 +137,17 @@ export default new Vuex.Store({
     //COMMENT Stuff
 
     getComments({commit, dispatch}, payload) {
-      api.get('task/'+payload.taskId + '/comments/', payload.data)
+      api.get('task/'+payload.taskId + '/comments/')
       .then(res => {
         commit('setComments', res.data)
       })
     },
 
     addComment({commit, dispatch}, payload) {
+      debugger
       api.post('task/'+payload.taskId + '/comments/', payload.data) 
       .then(res =>{
-        dispatch('getComments', res.data)
+        dispatch('getComments', payload)
       })
     },
 

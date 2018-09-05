@@ -27,18 +27,20 @@
     data() {
       return {
         newTask: {
-          description: ""
+          title: "",
+          description: "",
+          listId: this.listData._id
         }
       };
     },
     mounted() {
-      this.$store.dispatch('getTasks', this.listId)
+      this.$store.dispatch('getTasks', this.listData._id)
     },
 
     methods: {
       addTask() {
         this.$store.dispatch("addTask", this.newTask);
-        this.newTask = { title: "", description: "" };
+        this.newTask = { title: "", description: "", listId: this.listData._id };
       },
       deleteTask(taskId) {
         this.$store.dispatch("deleteTask", taskId);

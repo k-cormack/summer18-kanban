@@ -34,7 +34,8 @@
       return {
         newList: {
           title: "",
-          description: ""
+          description: "",
+          boardId: this.boardId
         }
       };
     },
@@ -46,6 +47,8 @@
     },
     methods: {
       addList() {
+        debugger
+        // this.newList.boardId = this.boardId
         this.$store.dispatch("addList", this.newList);
         this.newList = { title: "", description: "" };
       },

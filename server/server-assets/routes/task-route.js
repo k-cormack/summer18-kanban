@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
       res.send(data)
     })
     .catch(err => {
-      console.log(err)
+      res.status(400).send(err)
       next()
     })
 })
@@ -22,7 +22,7 @@ router.post('/', (req, res, next) => {
       res.send(newBoard)
     })
     .catch(err => {
-      console.log(err)
+      res.status(400).send(err)
       next()
     })
 })
@@ -36,7 +36,7 @@ router.put('/:id', (req, res, next) => {
       }
       board.update(req.body, (err) => {
         if (err) {
-          console.log(err)
+          res.status(400).send(err)
           next()
           return
         }
@@ -44,7 +44,7 @@ router.put('/:id', (req, res, next) => {
       });
     })
     .catch(err => {
-      console.log(err)
+      res.status(400).send(err)
       next()
     })
 })
@@ -82,14 +82,14 @@ router.post('/:taskId/comments', (req, res, next)=>{
   //     task.comments = task.comments.concat(req.body)
   //     task.save((err) =>{
   //       if (err){
-  //         console.log(err)
+  //         res.status(400).send(err)
   //         return res.status(500).send("failed to add comment")
   //       }
   //       return res.send(task)
   //     })
   //   })
   //   .catch(err=>{
-  //     console.log(err)
+  //     res.status(400).send(err)
   //     res.status(400).send('broke')
   //   })
 })
@@ -100,7 +100,7 @@ router.delete('/:taskId/comments/:commentId', (req, res, next)=>{
       task.comments.id(req.params.commentId).remove()
       task.save((err) =>{
         if (err){
-          console.log(err)
+          res.status(400).send(err)
           return res.status(500).send("failed to remove comment")
         }
         return res.send(task)
