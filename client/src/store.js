@@ -134,26 +134,26 @@ export default new Vuex.Store({
 
     //COMMENT Stuff
 
-  //   getComments({commit, dispatch}) {
-  //     api.get('comment')
-  //     .then(res => {
-  //       commit('setComments', res.data)
-  //     })
-  //   },
+    getComments({commit, dispatch}) {
+      api.get('/:taskId/comments/')
+      .then(res => {
+        commit('setComments', res.data)
+      })
+    },
 
-  //   addComment({commit, dispatch}, commentData) {
-  //     api.post('comment', commentData) 
-  //     .then(res =>{
-  //       dispatch('getComments')
-  //     })
-  //   },
+    addComment({commit, dispatch}, commentData) {
+      api.post('/:taskId/comments/', commentData) 
+      .then(res =>{
+        dispatch('getComments')
+      })
+    },
 
-  //   deleteComment({commit, dispatch}, commentId) {
-  //     api.delete('comment/' + commentId)
-  //     .then(res => {
-  //       dispatch('getComments')
-  //     })
-  //   },
+    deleteComment({commit, dispatch}, commentId) {
+      api.delete('/:taskId/comments/' + commentId)
+      .then(res => {
+        dispatch('getComments')
+      })
+    },
 
 
    }

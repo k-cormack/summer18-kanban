@@ -29,11 +29,16 @@ export default {
         newComment: {
         description: ""
       }
-    };
+    }
+    },
+    mounted() {
+    this.$store.dispatch('getTasks', this.listId)
   },
+  
   addComment() {
       this.$store.dispatch("addComment", this.newComment);
-      this.newComment = { title: "", description: "" };
+      debugger
+      this.newComment = {description: "" };
     },
     deleteComment(commentId) {
       this.$store.dispatch("deleteComment", commentId);
