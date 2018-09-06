@@ -153,7 +153,6 @@ export default new Vuex.Store({
     },
 
     addComment({ commit, dispatch }, payload) {
-      debugger
       api.post('task/' + payload.taskId + '/comments/', payload.data)
         .then(res => {
           dispatch('getComments', payload)
