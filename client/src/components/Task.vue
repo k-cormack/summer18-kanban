@@ -1,13 +1,13 @@
 <template>
     <div class="task">
-
-        This is a single Task View!!! {{taskData._id}} {{taskData.description}}
+        <h3>Task View</h3>
+        <h4>{{taskData.description}}</h4>
         <form @submit.prevent="addComment">
             <!-- <input type="text" placeholder="title" v-model="newTask.title" required> -->
             <input type="text" placeholder="comment" v-model="newComment.description">
             <button type="submit">Add Comment</button>
+            <button @click="deleteTask(taskData._id)">DELETE Task</button>
         </form>
-        <button @click="deleteTask(taskData._id)">DELETE Task</button>
         <div v-for="comment in comments" :key="comment._id">
             {{comment.description}}
             <!-- <router-link :to="{name: 'comment', params: {commentId: comment._id}}">{{comment.description}}</router-link> -->

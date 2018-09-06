@@ -8,10 +8,9 @@
       <input type="text" placeholder="description" v-model="newList.description">
       <button type="submit">Create New List</button>
     </form>
+
     <div v-for="list in lists" :key="list._id">
       <List class="col-6" v-for="list in lists" :listData='list' :key="list._id" />
-
-      <button @click="deleteList(list._id)">Delete List</button>
     </div>
   </div>
 </template>
