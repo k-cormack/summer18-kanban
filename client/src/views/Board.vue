@@ -1,5 +1,5 @@
 <template>
-  <div class="board justify-content-center">
+  <div class="board">
     <h1>{{board.title}}</h1>
     <h5>{{board.description}}</h5>
     <hr>

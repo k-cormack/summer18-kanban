@@ -1,5 +1,5 @@
 <template>
-  <div class="list justify-content-center">
+  <div class="list">
     <hr>
     <h2>
       Lists
