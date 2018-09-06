@@ -1,5 +1,19 @@
 let router = require('express').Router()
 let List = require('../models/list')
+let Task = require('../models/task')
+
+// GET tasks by list
+router.get('/:id/task', (req, res, next) => {
+  // @ts-ignore
+  Task.find({ listId: req.params.id })
+    .then(data => {
+      res.send(data)
+    })
+    .catch(err => {
+      res.status(400).send(err)
+      next()
+    })
+})
 
 //GET
 router.get('/', (req, res, next) => {

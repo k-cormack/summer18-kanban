@@ -84,9 +84,9 @@ router.post('/:taskId/comments', (req, res, next) => {
 })
 
 router.get('/:taskId/comments', (req, res, next) => {
-  Task.find(req.params.taskId)
+  Task.findById(req.params.taskId)
     .then(task => {
-      res.send(task)
+      res.send(task.comments)
     })
     .catch(err => {
       res.status(400).send(err)

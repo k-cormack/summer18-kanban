@@ -10,9 +10,7 @@
       <button @click="deleteList(list._id)">Delete List</button>
     </form>
 
-    <div v-for="list in lists" :key="list._id">
       <List class="col-6" v-for="list in lists" :listData='list' :key="list._id" />
-    </div>
   </div>
 </template>
 

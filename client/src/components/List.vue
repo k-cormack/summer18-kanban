@@ -52,7 +52,7 @@
 
     computed: {
       tasks() {
-        return this.$store.state.tasks
+        return this.$store.state.tasks[this.listData._id] || []
       }
     },
     components: {
