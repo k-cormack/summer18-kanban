@@ -140,7 +140,6 @@ export default new Vuex.Store({
     },
 
     deleteTask({ commit, dispatch }, task) {
-      debugger
       api.delete('tasks/' + task._id)
         .then(res => {
           dispatch('getTasks', task.listId)
@@ -150,7 +149,6 @@ export default new Vuex.Store({
     //COMMENT Stuff
 
     getComments({ commit, dispatch }, payload) {
-      debugger
       api.get('tasks/' + payload.taskId + '/comments/')
         .then(res => {
           
@@ -168,7 +166,6 @@ export default new Vuex.Store({
     },
 
     deleteComment({ commit, dispatch }, payload) {
-      debugger
       api.delete('tasks/' +payload.taskId + '/comments/' + payload.commentId)
         .then(res => {
           dispatch('getComments', payload)
