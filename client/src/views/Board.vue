@@ -35,14 +35,14 @@
         newList: {
           title: "",
           description: "",
-          boardId: this.boardId._id
+          boardId: this.boardId
         }
       };
     },
 
     computed: {
       lists() {
-        return this.$store.state.lists[this.board._id] || []
+        return this.$store.state.lists
 
       },
       board() {
@@ -54,7 +54,8 @@
 
         // this.newList.boardId = this.boardId
         this.$store.dispatch("addList", this.newList);
-        this.newList = { title: "", description: "" };
+        
+        this.newList = { title: "", description: "", boardId: this.boardId };
       },
       deleteList(ListId) {
         this.$store.dispatch("deleteList", ListId);

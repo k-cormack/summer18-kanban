@@ -32,18 +32,18 @@
         newTask: {
           title: "",
           description: "",
-          listId: this.listData._id
+          listId: this.listData.boardId
         }
       };
     },
     mounted() {
-      this.$store.dispatch('getTasks', this.listData._id)
+      this.$store.dispatch('getTasks', this.listData.boardId)
     },
 
     methods: {
       addTask() {
         this.$store.dispatch("addTask", this.newTask);
-        this.newTask = { title: "", description: "", listId: this.listData._id };
+        this.newTask = { title: "", description: "", listId: this.listData.boardId };
       },
 
     },

@@ -106,14 +106,15 @@ export default new Vuex.Store({
     },
 
     addList({ commit, dispatch }, listData) {
-      api.post('list', listData)
+      
+      api.post('/lists', listData)
         .then(res => {
           dispatch('getLists', listData.boardId)
         })
     },
 
     deleteList({ commit, dispatch }, listId) {
-      api.delete('list/' + listId)
+      api.delete('lists/' + listId)
         .then(res => {
           dispatch('getLists')
         })
@@ -122,21 +123,21 @@ export default new Vuex.Store({
     //TASK Stuff
 
     getTasks({ commit, dispatch },listId) {
-      api.get('list/'+listId+"/task")
+      api.get('lists/'+listId+"/tasks")
         .then(res => {
           commit('setTasks', res.data)
         })
     },
 
     addTask({ commit, dispatch }, taskData) {
-      api.post('task', taskData)
+      api.post('tasks', taskData)
         .then(res => {
           dispatch('getTasks', taskData.listId)
         })
     },
 
     deleteTask({ commit, dispatch }, taskId) {
-      api.delete('task/' + taskId)
+      api.delete('tasks/' + taskId)
         .then(res => {
           dispatch('getTasks')
         })
