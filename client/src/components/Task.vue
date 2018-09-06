@@ -2,14 +2,14 @@
     <div class="task">
         <h4>{{taskData.description}}</h4>
         <form @submit.prevent="addComment">
+            <button @click="deleteTask()">Delete Task</button>
             <input type="text" placeholder="comment" v-model="newComment.description">
             <button type="submit">Add Comment</button>
-            <button @click="deleteComment(comment._id)">Delete Comment</button>
         </form>
         <div class="col-3" v-for="comment in comments" :key="comment._id">
             {{comment.description}}
+            <button @click="deleteComment(comment._id)">Delete Comment</button>
         </div>
-        <button @click="deleteTask(taskData._id)">Delete Task</button>
     </div>
 </template>
 
@@ -30,7 +30,8 @@
             }
         },
         mounted() {
-            this.$store.dispatch('getTasks', this.listId)
+            this.$store.dispatch('getTasks', this.listId);
+            this.$store.dispatch('getComments', {taskId: this.taskData._id})
         },
         methods: {
             addComment() {
@@ -38,10 +39,10 @@
                 this.newComment = { description: "" };
             },
             deleteComment(commentId) {
-                this.$store.dispatch("deleteComment", { commentId, taskId: this.taskData._id });
+                this.$store.dispatch("deleteComment", { taskId: this.taskData._id, commentId });
             },
-            deleteTask(taskId) {
-                this.$store.dispatch("deleteTask", taskId);
+            deleteTask() {
+                this.$store.dispatch("deleteTask", this.taskData);
             }
 
         },
