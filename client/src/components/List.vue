@@ -11,7 +11,6 @@
     <form @submit.prevent="addTask">
       <input type="text" placeholder="description" v-model="newTask.description">
       <button type="submit">Create New Task</button>
-      <button @click="deleteTask(taskData._id)">Delete Task</button>
     </form>
     <task class="col-3" v-for="task in tasks" :taskData='task' :key="task._id" />
   </div>

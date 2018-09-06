@@ -10,6 +10,7 @@
         <div class="col-3" v-for="comment in comments" :key="comment._id">
             {{comment.description}}
         </div>
+        <button @click="deleteTask(taskData._id)">Delete Task</button>
     </div>
 </template>
 
