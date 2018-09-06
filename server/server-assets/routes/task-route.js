@@ -63,39 +63,34 @@ router.delete('/:id', (req, res, next) => {
     })
 })
 
+//COMMENT STUFF BELOW!!
+
 //route: tasks/:taskId/comments data: comment
 router.post('/:taskId/comments', (req, res, next)=>{
   req.body.authorId = req.session.uid
-
-  //----------------------------------------------------S
-  //SUPER COOLER WAY TO ACHIEVE THE SAME AS BELOW
+//SUPER COOLER WAY TO ACHIEVE THE SAME AS BELOW
   Task.findByIdAndUpdate(req.params.taskId, { $push: { comments: req.body}}, {new: true})
-    .then(task=>{
+  .then(task=>{
+    res.send(task)
+  })
+  .catch(err=>{
+    res.status(400).send("it broke")
+  })
+})
+
+router.get('/:taskId/comments', (req, res, next) => {
+  Task.find(req.params.taskId)
+  .then(task => {
       res.send(task)
-    })
-    .catch(err=>{
-      res.status(400).send("it broke")
-    })
-  //----------------------------------------------------
-  // Task.findById(req.params.taskId)
-  //   .then(task=>{
-  //     task.comments = task.comments.concat(req.body)
-  //     task.save((err) =>{
-  //       if (err){
-  //         res.status(400).send(err)
-  //         return res.status(500).send("failed to add comment")
-  //       }
-  //       return res.send(task)
-  //     })
-  //   })
-  //   .catch(err=>{
-  //     res.status(400).send(err)
-  //     res.status(400).send('broke')
-  //   })
+  })
+  .catch(err => {
+    res.status(400).send(err)
+    next()
+  })
 })
 
 router.delete('/:taskId/comments/:commentId', (req, res, next)=>{
-  Task.findById(req.params.taskId)
+    Task.findById(req.params.taskId)
     .then(task=>{
       task.comments.id(req.params.commentId).remove()
       task.save((err) =>{
@@ -106,10 +101,29 @@ router.delete('/:taskId/comments/:commentId', (req, res, next)=>{
         return res.send(task)
       })
     })
-})
-
-
-
-
-
-module.exports = router
+  })
+  
+  
+  
+  
+  
+  module.exports = router
+  
+  
+  //----------------------------------------------------
+  // Task.findById(req.params.taskId)
+  //   .then(task=>{
+    //     task.comments = task.comments.concat(req.body)
+    //     task.save((err) =>{
+      //       if (err){
+        //         res.status(400).send(err)
+        //         return res.status(500).send("failed to add comment")
+        //       }
+        //       return res.send(task)
+        //     })
+        //   })
+        //   .catch(err=>{
+          //     res.status(400).send(err)
+          //     res.status(400).send('broke')
+          //   })
+  //----------------------------------------------------
