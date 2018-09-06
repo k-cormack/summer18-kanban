@@ -7,10 +7,11 @@
       <input type="text" placeholder="title" v-model="newList.title" required>
       <input type="text" placeholder="description" v-model="newList.description">
       <button type="submit">Create New List</button>
-      <button @click="deleteList(list._id)">Delete List</button>
     </form>
-
+    <div>
       <List class="col-6" v-for="list in lists" :listData='list' :key="list._id" />
+      <!-- <button @click="deleteList(list._id)">Delete List</button> -->
+    </div>
   </div>
 </template>
 
@@ -54,12 +55,10 @@
 
         // this.newList.boardId = this.boardId
         this.$store.dispatch("addList", this.newList);
-        
+
         this.newList = { title: "", description: "", boardId: this.boardId };
       },
-      deleteList(ListId) {
-        this.$store.dispatch("deleteList", ListId);
-      }
+     
     },
 
     components: {

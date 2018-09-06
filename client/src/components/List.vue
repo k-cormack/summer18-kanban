@@ -6,7 +6,7 @@
     </h2> -->
     <h3>{{listData.title}}</h3>
     <h5>{{listData.description}}</h5>
-
+    <button @click="deleteList(listData)">Delete List</button>
 
     <form @submit.prevent="addTask">
       <input type="text" placeholder="description" v-model="newTask.description">
@@ -44,6 +44,9 @@
         this.$store.dispatch("addTask", this.newTask);
         this.newTask = { title: "", description: "", listId: this.listData.boardId };
       },
+      deleteList(listData) {
+        this.$store.dispatch("deleteList", listData);
+      }
 
     },
     props: ["listData"],
