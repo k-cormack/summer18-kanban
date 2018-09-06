@@ -4,6 +4,7 @@ let mongoose = require('mongoose')
 
 //GET
 router.get('/', (req, res, next) => {
+  // @ts-ignore
   Task.find({ authorId: req.session.uid })
     .then(data => {
       res.send(data)
@@ -16,6 +17,7 @@ router.get('/', (req, res, next) => {
 
 //POST
 router.post('/', (req, res, next) => {
+  // @ts-ignore
   req.body.authorId = req.session.uid
   Task.create(req.body)
     .then(newBoard => {
@@ -31,6 +33,7 @@ router.post('/', (req, res, next) => {
 router.put('/:id', (req, res, next) => {
   Task.findById(req.params.id)
     .then(board => {
+      // @ts-ignore
       if (!board.authorId.equals(req.session.uid)) {
         return res.status(401).send("ACCESS DENIED!")
       }
@@ -53,6 +56,7 @@ router.put('/:id', (req, res, next) => {
 router.delete('/:id', (req, res, next) => {
   Task.findById(req.params.id)
     .then(board => {
+      // @ts-ignore
       if (!board.authorId.equals(req.session.uid)) {
         return res.status(401).send("ACCESS DENIED!")
       }
@@ -66,50 +70,50 @@ router.delete('/:id', (req, res, next) => {
 //COMMENT STUFF BELOW!!
 
 //route: tasks/:taskId/comments data: comment
-router.post('/:taskId/comments', (req, res, next)=>{
+router.post('/:taskId/comments', (req, res, next) => {
   req.body.authorId = req.session.uid
-//SUPER COOLER WAY TO ACHIEVE THE SAME AS BELOW
-  Task.findByIdAndUpdate(req.params.taskId, { $push: { comments: req.body}}, {new: true})
-  .then(task=>{
-    res.send(task)
-  })
-  .catch(err=>{
-    res.status(400).send("it broke")
-  })
+  //SUPER COOLER WAY TO ACHIEVE THE SAME AS BELOW
+  Task.findByIdAndUpdate(req.params.taskId, { $push: { comments: req.body } }, { new: true })
+    .then(task => {
+      res.send(task)
+    })
+    .catch(err => {
+      res.status(400).send("it broke")
+    })
 })
 
 router.get('/:taskId/comments', (req, res, next) => {
   Task.find(req.params.taskId)
-  .then(task => {
+    .then(task => {
       res.send(task)
-  })
-  .catch(err => {
-    res.status(400).send(err)
-    next()
-  })
+    })
+    .catch(err => {
+      res.status(400).send(err)
+      next()
+    })
 })
 
-router.delete('/:taskId/comments/:commentId', (req, res, next)=>{
-    Task.findById(req.params.taskId)
-    .then(task=>{
+router.delete('/:taskId/comments/:commentId', (req, res, next) => {
+  Task.findById(req.params.taskId)
+    .then(task => {
       task.comments.id(req.params.commentId).remove()
-      task.save((err) =>{
-        if (err){
+      task.save((err) => {
+        if (err) {
           res.status(400).send(err)
           return res.status(500).send("failed to remove comment")
         }
         return res.send(task)
       })
     })
-  })
-  
-  
-  
-  
-  
-  module.exports = router
-  
-  
+})
+
+
+
+
+
+module.exports = router
+
+
   //----------------------------------------------------
   // Task.findById(req.params.taskId)
   //   .then(task=>{
