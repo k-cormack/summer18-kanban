@@ -3,6 +3,7 @@ let List = require('../models/list')
 
 //GET
 router.get('/', (req, res, next) => {
+  // @ts-ignore
   List.find({ authorId: req.session.uid })
     .then(data => {
       res.send(data)
@@ -15,6 +16,7 @@ router.get('/', (req, res, next) => {
 
 //POST
 router.post('/', (req, res, next) => {
+  // @ts-ignore
   req.body.authorId = req.session.uid
   List.create(req.body)
     .then(newBoard => {
@@ -30,6 +32,7 @@ router.post('/', (req, res, next) => {
 router.put('/:id', (req, res, next) => {
   List.findById(req.params.id)
     .then(board => {
+      // @ts-ignore
       if (!board.authorId.equals(req.session.uid)) {
         return res.status(401).send("ACCESS DENIED!")
       }
@@ -52,6 +55,7 @@ router.put('/:id', (req, res, next) => {
 router.delete('/:id', (req, res, next) => {
   List.findById(req.params.id)
     .then(board => {
+      // @ts-ignore
       if (!board.authorId.equals(req.session.uid)) {
         return res.status(401).send("ACCESS DENIED!")
       }
