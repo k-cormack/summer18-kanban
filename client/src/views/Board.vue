@@ -7,6 +7,7 @@
       <input type="text" placeholder="title" v-model="newList.title" required>
       <input type="text" placeholder="description" v-model="newList.description">
       <button type="submit">Create New List</button>
+      <button @click="deleteList(list._id)">Delete List</button>
     </form>
 
     <div v-for="list in lists" :key="list._id">
