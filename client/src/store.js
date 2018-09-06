@@ -122,17 +122,20 @@ export default new Vuex.Store({
 
     //TASK Stuff
 
-    getTasks({ commit, dispatch },listId) {
-      api.get('lists/'+listId+"/tasks")
+    getTasks({ commit, dispatch }, listId) {
+      debugger
+      api.get('/lists/'+listId+'/tasks')
         .then(res => {
+          debugger
           commit('setTasks', res.data)
         })
     },
 
     addTask({ commit, dispatch }, taskData) {
-      api.post('tasks', taskData)
-        .then(res => {
-          dispatch('getTasks', taskData.listId)
+      debugger
+      api.post('/tasks', taskData)
+      .then(res => {
+      dispatch('getTasks', taskData.listId)
         })
     },
 

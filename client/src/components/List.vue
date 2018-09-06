@@ -30,14 +30,13 @@
     data() {
       return {
         newTask: {
-          title: "",
           description: "",
-          listId: this.listData.boardId
+          listId: this.listData._id
         }
       };
     },
     mounted() {
-      this.$store.dispatch('getTasks', this.listData.boardId)
+      this.$store.dispatch('getTasks', this.listData._id)
     },
 
     methods: {

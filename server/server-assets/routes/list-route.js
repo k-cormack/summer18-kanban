@@ -3,7 +3,7 @@ let List = require('../models/list')
 let Task = require('../models/task')
 
 // GET tasks by list
-router.get('/:id/task', (req, res, next) => {
+router.get('/:id/tasks', (req, res, next) => {
   // @ts-ignore
   Task.find({ listId: req.params.id })
     .then(data => {
