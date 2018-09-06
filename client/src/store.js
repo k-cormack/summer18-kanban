@@ -35,6 +35,7 @@ export default new Vuex.Store({
     },
     setBoard(state, board) {
       state.activeBoard = board
+      //Vue.set(state.activeBoard, activeBoard[0].boardId, activeBoard)
     },
     setLists(state, lists) {
       state.lists = lists
@@ -97,8 +98,8 @@ export default new Vuex.Store({
     },
 
     //LIST Stuff
-    getLists({ commit, dispatch }) {
-      api.get('list')
+    getLists({ commit, dispatch }, boardId) {
+      api.get('boards/'+boardId+'/lists')
         .then(res => {
           commit('setLists', res.data)
         })
@@ -107,7 +108,7 @@ export default new Vuex.Store({
     addList({ commit, dispatch }, listData) {
       api.post('list', listData)
         .then(res => {
-          dispatch('getLists')
+          dispatch('getLists', listData.boardId)
         })
     },
 
@@ -144,12 +145,12 @@ export default new Vuex.Store({
     //COMMENT Stuff
 
     getComments({ commit, dispatch }, payload) {
-      debugger
+      
       api.get('task/' + payload.taskId + '/comments/')
         .then(res => {
-          debugger
+          
           commit('setComments', res.data)
-          debugger
+          
         })
     },
 
@@ -157,7 +158,7 @@ export default new Vuex.Store({
       api.post('task/' + payload.taskId + '/comments/', payload.data)
         .then(res => {
           dispatch('getComments', payload)
-          debugger
+          
         })
     },
 

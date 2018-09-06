@@ -1,9 +1,9 @@
 <template>
   <div class="list">
     <hr>
-    <h2>
+    <!-- <h2>
       Lists
-    </h2>
+    </h2> -->
     <h3>{{listData.title}}</h3>
     <h5>{{listData.description}}</h5>
 

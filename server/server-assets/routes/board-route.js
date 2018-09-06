@@ -1,5 +1,6 @@
 let router = require('express').Router()
 let Boards = require('../models/board')
+let Lists = require('../models/list')
 
 //GET
 router.get('/', (req, res, next) => {
@@ -16,6 +17,17 @@ router.get('/', (req, res, next) => {
 
 router.get('/:boardId', (req, res, next) => {
   Boards.findById(req.params.boardId)
+    .then(data => {
+      res.send(data)
+    })
+    .catch(err => {
+      console.log(err)
+      next()
+    })
+})
+
+router.get('/:boardId/lists', (req, res, next) => {
+  Lists.find({boardId: req.params.boardId})
     .then(data => {
       res.send(data)
     })

@@ -1,6 +1,6 @@
 <template>
     <div class="task">
-        <h3>Task View</h3>
+        <!-- <h3>Task View</h3> -->
         <h4>{{taskData.description}}</h4>
         <form @submit.prevent="addComment">
             <input type="text" placeholder="comment" v-model="newComment.description">

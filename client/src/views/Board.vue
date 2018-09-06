@@ -26,8 +26,8 @@
       }
     },
     mounted() {
-      this.$store.dispatch('getBoard', this.$route.params.boardId)
-      this.$store.dispatch("getLists", this.$route.params.boardId)
+      this.$store.dispatch('getBoard', this.boardId)
+      this.$store.dispatch("getLists", this.boardId)
 
     },
     data() {
@@ -35,14 +35,14 @@
         newList: {
           title: "",
           description: "",
-          boardId: this.boardId
+          boardId: this.boardId._id
         }
       };
     },
 
     computed: {
       lists() {
-        return this.$store.state.lists
+        return this.$store.state.lists[this.board._id] || []
 
       },
       board() {

@@ -27,18 +27,6 @@ export default new Router({
       component: Board
     },
     {
-    path: '/list/:listId',
-    name: 'list',
-    props: true,
-    component: List
-    },
-    {
-      path: '/task/:taskId',
-      name: 'task',
-      props: true,
-      component: Task
-    },
-    {
       path: '/login',
       name: 'login',
       component: Login
