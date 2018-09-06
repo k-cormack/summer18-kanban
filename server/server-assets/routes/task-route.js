@@ -71,6 +71,7 @@ router.delete('/:id', (req, res, next) => {
 
 //route: tasks/:taskId/comments data: comment
 router.post('/:taskId/comments', (req, res, next) => {
+  // @ts-ignore
   req.body.authorId = req.session.uid
   //SUPER COOLER WAY TO ACHIEVE THE SAME AS BELOW
   Task.findByIdAndUpdate(req.params.taskId, { $push: { comments: req.body } }, { new: true })
