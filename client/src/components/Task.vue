@@ -35,11 +35,11 @@
         },
         methods: {
             addComment() {
-                this.$store.dispatch("addComment", { data: this.newComment, taskId: this.taskId });
+                this.$store.dispatch("addComment", { data: this.newComment, taskId: this.taskData._id });
                 this.newComment = { description: "" };
             },
             deleteComment(commentId) {
-                this.$store.dispatch("deleteComment", { commentId, taskId: this.taskId });
+                this.$store.dispatch("deleteComment", { commentId, taskId: this.taskData._id });
             },
             deleteTask(taskId) {
                 this.$store.dispatch("deleteTask", taskId);
