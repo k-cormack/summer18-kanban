@@ -123,16 +123,16 @@ export default new Vuex.Store({
     //TASK Stuff
 
     getTasks({ commit, dispatch }, listId) {
-      debugger
+      
       api.get('/lists/'+listId+'/tasks')
         .then(res => {
-          debugger
+          
           commit('setTasks', res.data)
         })
     },
 
     addTask({ commit, dispatch }, taskData) {
-      debugger
+      
       api.post('/tasks', taskData)
       .then(res => {
       dispatch('getTasks', taskData.listId)
@@ -140,6 +140,7 @@ export default new Vuex.Store({
     },
 
     deleteTask({ commit, dispatch }, taskId) {
+      debugger
       api.delete('tasks/' + taskId)
         .then(res => {
           dispatch('getTasks')
@@ -150,7 +151,7 @@ export default new Vuex.Store({
 
     getComments({ commit, dispatch }, payload) {
       
-      api.get('task/' + payload.taskId + '/comments/')
+      api.get('tasks/' + payload.taskId + '/comments/')
         .then(res => {
           
           commit('setComments', res.data)
@@ -159,7 +160,7 @@ export default new Vuex.Store({
     },
 
     addComment({ commit, dispatch }, payload) {
-      api.post('task/' + payload.taskId + '/comments/', payload.data)
+      api.post('tasks/' + payload.taskId + '/comments/', payload.data)
         .then(res => {
           dispatch('getComments', payload)
           
@@ -167,6 +168,7 @@ export default new Vuex.Store({
     },
 
     deleteComment({ commit, dispatch }, payload) {
+      debugger
       api.delete(payload.taskId + '/comments/' + payload.commentId)
         .then(res => {
           dispatch('getComments')
