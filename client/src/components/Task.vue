@@ -6,8 +6,8 @@
             <input type="text" placeholder="comment" v-model="newComment.description">
             <button type="submit">Add Comment</button>
         </form>
-        <div class="col-3" v-for="comment in comments" :key="comment._id">
-            {{comment.description}}
+        <div class="col-3" v-for="comment in taskData.comments" :key="comment._id">
+            <p>{{comment.description}}</p>
             <button @click="deleteComment(comment._id)">Delete Comment</button>
         </div>
     </div>
@@ -19,7 +19,8 @@
         data() {
             return {
                 newComment: {
-                    description: ""
+                    description: "",
+                    taskId: this.taskData._id
                 }
             }
         },
@@ -31,7 +32,7 @@
         },
         mounted() {
             this.$store.dispatch('getTasks', this.listId);
-            this.$store.dispatch('getComments', { taskId: this.taskData._id })
+            // this.$store.dispatch('getComments', { taskId: this.taskData._id })
         },
         methods: {
             addComment() {
@@ -45,11 +46,11 @@
                 this.$store.dispatch("deleteTask", this.taskData);
             }
         },
-        computed: {
-            comments() {
-                return this.$store.state.comments
-            }
-        },
+        // computed: {
+        //     comments() {
+        //         return this.$store.state.comments
+        //     }
+        // },
         props: ["taskData", "taskDescription"]
     };
 </script>
