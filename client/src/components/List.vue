@@ -12,21 +12,36 @@
       <input type="text" placeholder="description" v-model="newTask.description">
       <button type="submit">Create New Task</button>
     </form>
-    <Task class="col-3" v-for="task in tasks" :taskData='task' :key="task._id" />
+
+    <Drag class="drag" :transferData="{ example: 'nested', position: 'list'}">
+      <Drag class="drag" v-for="task in tasks" @dragstart="handleTaskDragstart" :transferData="task">
+        <Task class="col-3"  :taskData='task' :key="task._id"/>
+      </Drag>
+    </Drag>
+    <Drop class="drop"
+			:class="{ over }"
+			@dragover="over = true"
+			@dragleave="over = false"
+			@drop="handleDrop">
+				drop here
+		</Drop>
+
   </div>
 </template>
 
 <script>
-  import Task from '@/components/Task'
+  import Task from '@/components/Task';
+  import { Drag, Drop } from 'vue-drag-drop';
 
   export default {
     name: "list",
-    data() {
+    data: function() {
       return {
+        over: false,
         newTask: {
           description: "",
           listId: this.listData._id
-        }
+        },
       };
     },
     created() {
@@ -51,16 +66,29 @@
       },
       deleteList(listData) {
         this.$store.dispatch("deleteList", listData);
-      }
+      },
+      handleTaskDragstart(data, event) {
+				event.stopPropagation();
+			},
+			handleDrop(task) {
+        task.oldListId = task.listId
+        task.listId = this.listData._id
+        this.over = false;
+        this.$store.dispatch("updateTask", task)
+				// alert(`You dropped with task: ${JSON.stringify(task)}`);
+			},
+		},
 
-    },
     props: ["listData"],
 
 
     components: {
-      Task
+      Task,
+      Drag,
+      Drop
     }
   };
 </script>
 <style scoped>
+  
 </style>
