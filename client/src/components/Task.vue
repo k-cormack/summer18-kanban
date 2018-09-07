@@ -1,8 +1,8 @@
 <template>
     <div class="task">
         <h4>{{taskData.description}}</h4>
+        <button @click="deleteTask()">Delete Task</button>
         <form @submit.prevent="addComment">
-            <button @click="deleteTask()">Delete Task</button>
             <input type="text" placeholder="comment" v-model="newComment.description">
             <button type="submit">Add Comment</button>
         </form>
