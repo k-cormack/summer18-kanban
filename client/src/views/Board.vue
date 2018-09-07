@@ -20,17 +20,6 @@
 
   export default {
     name: "board",
-    created() {
-      //blocks users not logged in
-      if (!this.$store.state.user._id) {
-        this.$router.push({ name: "login" });
-      }
-    },
-    mounted() {
-      this.$store.dispatch('getBoard', this.boardId)
-      this.$store.dispatch("getLists", this.boardId)
-
-    },
     data() {
       return {
         newList: {
@@ -40,16 +29,26 @@
         }
       };
     },
-
-    computed: {
-      lists() {
-        return this.$store.state.lists
-
-      },
-      board() {
-        return this.$store.state.activeBoard
+    created() {
+      //blocks users not logged in
+      if (!this.$store.state.user._id) {
+        this.$router.push({ name: "login" });
       }
     },
+    computed: {
+      board() {
+        return this.$store.state.activeBoard
+      },
+      lists() {
+        return this.$store.state.lists
+      },
+    },
+    mounted() {
+      this.$store.dispatch('getBoard', this.boardId)
+      this.$store.dispatch("getLists", this.boardId)
+
+    },
+
     methods: {
       addList() {
 
@@ -58,14 +57,14 @@
 
         this.newList = { title: "", description: "", boardId: this.boardId };
       },
-     
+
     },
+    props: ["boardId"],
 
     components: {
       List
     },
 
-    props: ["boardId"]
   };
 </script>
 <style scoped>

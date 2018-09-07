@@ -41,6 +41,7 @@ export default new Vuex.Store({
       state.lists = lists
     },
     setTasks(state, data) {
+      // state.tasks = data
       Vue.set(state.tasks, data.listId, data.tasks)
     },
     setComments(state, comments) {

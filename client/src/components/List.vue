@@ -5,14 +5,14 @@
       Lists
     </h2> -->
     <h3>{{listData.title}}</h3>
-    <h5>{{listData.description}}</h5>
+    <!-- <h5>{{listData.description}}</h5> -->
     <button @click="deleteList(listData)">Delete List</button>
 
     <form @submit.prevent="addTask">
       <input type="text" placeholder="description" v-model="newTask.description">
       <button type="submit">Create New Task</button>
     </form>
-    <task class="col-3" v-for="task in tasks" :taskData='task' :key="task._id" />
+    <Task class="col-3" v-for="task in tasks" :taskData='task' :key="task._id" />
   </div>
 </template>
 
@@ -21,12 +21,6 @@
 
   export default {
     name: "list",
-    created() {
-      //blocks users not logged in
-      if (!this.$store.state.user._id) {
-        this.$router.push({ name: "login" });
-      }
-    },
     data() {
       return {
         newTask: {
@@ -35,6 +29,17 @@
         }
       };
     },
+    created() {
+      //blocks users not logged in
+      if (!this.$store.state.user._id) {
+        this.$router.push({ name: "login" });
+      }
+    },
+    computed: {
+      tasks() {
+        return this.$store.state.tasks[this.listData._id]
+      }
+    },
     mounted() {
       this.$store.dispatch('getTasks', this.listData._id)
     },
@@ -42,7 +47,7 @@
     methods: {
       addTask() {
         this.$store.dispatch("addTask", this.newTask);
-        this.newTask = { title: "", description: "", listId: this.listData.boardId };
+        this.newTask = { title: "", description: "", listId: this.listData._id };
       },
       deleteList(listData) {
         this.$store.dispatch("deleteList", listData);
@@ -52,11 +57,6 @@
     props: ["listData"],
 
 
-    computed: {
-      tasks() {
-        return this.$store.state.tasks[this.listData._id] || []
-      }
-    },
     components: {
       Task
     }

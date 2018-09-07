@@ -16,12 +16,6 @@
 <script>
     export default {
         name: "task",
-        created() {
-            //blocks users not logged in
-            if (!this.$store.state.user._id) {
-                this.$router.push({ name: "login" });
-            }
-        },
         data() {
             return {
                 newComment: {
@@ -29,9 +23,15 @@
                 }
             }
         },
+        created() {
+            //blocks users not logged in
+            if (!this.$store.state.user._id) {
+                this.$router.push({ name: "login" });
+            }
+        },
         mounted() {
             this.$store.dispatch('getTasks', this.listId);
-            this.$store.dispatch('getComments', {taskId: this.taskData._id})
+            this.$store.dispatch('getComments', { taskId: this.taskData._id })
         },
         methods: {
             addComment() {
@@ -44,10 +44,7 @@
             deleteTask() {
                 this.$store.dispatch("deleteTask", this.taskData);
             }
-
         },
-
-
         computed: {
             comments() {
                 return this.$store.state.comments
