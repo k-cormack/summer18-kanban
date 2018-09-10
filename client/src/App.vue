@@ -13,8 +13,8 @@
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: white;
-    background-image: linear-gradient(to top, #ffffff 0%, #96dce6 100%);
-    height: 700px;
+    background-image: linear-gradient(to top, #f4f9f4 0%,#616161 100%);
+    height: 98vh;
     text-shadow: 2px 2px 3px black;
     padding: 0px
   }

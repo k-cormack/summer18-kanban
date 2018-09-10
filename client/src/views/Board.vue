@@ -13,6 +13,7 @@
       <button type="submit">Create New List</button>
     </form>
     <hr>
+    
     <div class="row justify-content-center">
       <List class="col-3" v-for="list in lists" :listData='list' :key="list._id" />
     </div>

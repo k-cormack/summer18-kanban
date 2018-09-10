@@ -13,7 +13,7 @@
         <button @click="deleteList(listData)">Delete List</button>
     
         <form @submit.prevent="addTask">
-          <input type="text" placeholder="description" v-model="newTask.description" required>
+          <input type="text" placeholder="New Task" v-model="newTask.description" required>
           <button type="submit">Create New Task</button>
         </form>
     </Drop>
@@ -89,7 +89,10 @@
 </script>
 <style scoped>
   .list {
-    background-color: gray
+    background-color: #8aae92;
+    min-height: 50vh;
+    margin: 10px;
+    padding-bottom: 10px
   }
   
 </style>

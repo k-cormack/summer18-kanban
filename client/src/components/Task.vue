@@ -60,10 +60,10 @@
 </script>
 <style scoped>
     .task-body {
-        background-color: coral
+        background-color: #c4e3cb;
     }
     .comment-body {
-        background-color: rgba(128, 128, 128, 0.486);
-        margin-top: 8px;
+        background-color: #c4e3cb8e;
+        
     }
 </style>
