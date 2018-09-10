@@ -5,7 +5,7 @@
     <hr>
     <form @submit.prevent="addList">
       <input type="text" placeholder="title" v-model="newList.title" required>
-      <input type="text" placeholder="description" v-model="newList.description">
+      <input type="text" placeholder="description" v-model="newList.description" required>
       <button type="submit">Create New List</button>
     </form>
     <div>

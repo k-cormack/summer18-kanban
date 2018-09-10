@@ -24,7 +24,7 @@ export default new Vuex.Store({
     activeBoard: {},
     lists: [],
     tasks: {},
-    comments: {},
+    // comments: {},
   },
   mutations: {
     setUser(state, user) {
@@ -44,9 +44,9 @@ export default new Vuex.Store({
       // state.tasks = data
       Vue.set(state.tasks, data.listId, data.tasks)
     },
-    setComments(state, comments) {
-      state.comments = comments
-    },
+    // setComments(state, comments) {
+    //   state.comments = comments
+    // },
   },
   actions: {
     //AUTH STUFF
@@ -70,6 +70,13 @@ export default new Vuex.Store({
           commit('setUser', res.data)
           router.push({ name: 'boards' })
         })
+    },
+    logout({commit, dispatch}, userId) {
+      auth.delete('logout', userId)
+      .then(res => {
+        commit('setUser', res.data)
+        
+      })
     },
 
     //BOARDS
@@ -157,7 +164,7 @@ export default new Vuex.Store({
     //COMMENT Stuff
 
     getComments({ commit, dispatch }, payload) {
-      api.get('tasks/' + payload.taskId + '/comments/')
+      api.get('tasks/' + payload + '/comments/')
         .then(res => {
           
           commit('setComments', res.data)
@@ -166,17 +173,17 @@ export default new Vuex.Store({
     },
 
     addComment({ commit, dispatch }, payload) {
-      api.post('tasks/' + payload.taskId + '/comments/', payload.data)
+      api.post('tasks/' + payload.data.taskId + '/comments', payload.data)
         .then(res => {
-          dispatch('getComments', payload)
+          dispatch('getTasks', payload.listId)
           
         })
     },
 
     deleteComment({ commit, dispatch }, payload) {
-      api.delete('tasks/' +payload.taskId + '/comments/' + payload.commentId)
+      api.delete('tasks/' + payload.taskId + '/comments/' + payload.commentId)
         .then(res => {
-          dispatch('getComments', payload)
+          dispatch('getTasks', payload.listId)
         })
     },
 

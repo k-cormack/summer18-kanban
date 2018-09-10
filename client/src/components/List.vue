@@ -9,7 +9,7 @@
     <button @click="deleteList(listData)">Delete List</button>
 
     <form @submit.prevent="addTask">
-      <input type="text" placeholder="description" v-model="newTask.description">
+      <input type="text" placeholder="description" v-model="newTask.description" required>
       <button type="submit">Create New Task</button>
     </form>
 

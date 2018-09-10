@@ -3,7 +3,7 @@
         <h4>{{taskData.description}}</h4>
         <button @click="deleteTask()">Delete Task</button>
         <form @submit.prevent="addComment">
-            <input type="text" placeholder="comment" v-model="newComment.description">
+            <input type="text" placeholder="comment" v-model="newComment.description" required>
             <button type="submit">Add Comment</button>
         </form>
         <div class="col-3" v-for="comment in taskData.comments" :key="comment._id">
@@ -36,11 +36,11 @@
         },
         methods: {
             addComment() {
-                this.$store.dispatch("addComment", { data: this.newComment, taskId: this.taskData._id });
-                this.newComment = { description: "" };
+                this.$store.dispatch("addComment", { data: this.newComment, listId: this.taskData.listId });
+                this.newComment = { description: "", taskId: this.taskData._id };
             },
             deleteComment(commentId) {
-                this.$store.dispatch("deleteComment", { taskId: this.taskData._id, commentId });
+                this.$store.dispatch("deleteComment", { commentId, taskId: this.taskData._id, listId: this.taskData.listId });
             },
             deleteTask() {
                 this.$store.dispatch("deleteTask", this.taskData);
