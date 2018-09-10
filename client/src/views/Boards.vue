@@ -1,18 +1,26 @@
 <template>
-  <div class="row boards">
-    <div class="col-12">
+  <div class="boards flex col-12">
+
+    <div class="row justify-content-end" id="logout">
       <button @click="logout">LOGOUT</button>
-      <h4>
-        WELCOME TO THE BOARDS!!!
-      </h4>
-      <form @submit.prevent="addBoard">
-        <input type="text" placeholder="title" v-model="newBoard.title" required>
-        <input type="text" placeholder="description" v-model="newBoard.description">
-        <button type="submit">Create Board</button>
-      </form>
-      <div v-for="board in boards" :key="board._id">
-        <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
-        <button @click="deleteBoard(board._id)">Delete Board</button>
+    </div>
+
+    <h2>
+      BOARDS
+    </h2>
+    <form @submit.prevent="addBoard">
+      <input type="text" placeholder="Name of Board" v-model="newBoard.title" required>
+      <input type="text" placeholder="Description" v-model="newBoard.description">
+      <button type="submit">Create Board</button>
+    </form>
+    <div class="row justify-content-center" v-for="board in boards" :key="board._id">
+      <div class="col-3">
+        <router-link class="row justify-content-center" :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
+      </div>
+      <div class="col-3">
+        <div class="row">
+          <button @click="deleteBoard(board._id)">Delete Board</button>
+        </div>
       </div>
     </div>
   </div>
@@ -62,8 +70,10 @@
 </script>
 <style scoped>
   .boards {
-
     font-size: 1.75rem;
+  }
 
+  #logout {
+    margin-right: 40px;
   }
 </style>
