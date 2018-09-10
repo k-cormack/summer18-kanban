@@ -8,7 +8,7 @@
         </form>
         <div class="col-3" v-for="comment in taskData.comments" :key="comment._id">
             <p>{{comment.description}}</p>
-            <button @click="deleteComment(comment._id)">Delete Comment</button>
+            <button class="delete-button" @click="deleteComment(comment._id)">Delete Comment</button>
         </div>
     </div>
 </template>

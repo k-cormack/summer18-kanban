@@ -15,16 +15,12 @@
 
     <Drag class="drag" :transferData="{ example: 'nested', position: 'list'}">
       <Drag class="drag" v-for="task in tasks" @dragstart="handleTaskDragstart" :transferData="task">
-        <Task class="col-3"  :taskData='task' :key="task._id"/>
+        <Task class="col-3" :taskData='task' :key="task._id" />
       </Drag>
     </Drag>
-    <Drop class="drop"
-			:class="{ over }"
-			@dragover="over = true"
-			@dragleave="over = false"
-			@drop="handleDrop">
-				drop here
-		</Drop>
+    <Drop class="drop" :class="{ over }" @dragover="over = true" @dragleave="over = false" @drop="handleDrop">
+      drop here
+    </Drop>
 
   </div>
 </template>
@@ -35,7 +31,7 @@
 
   export default {
     name: "list",
-    data: function() {
+    data: function () {
       return {
         over: false,
         newTask: {
@@ -68,16 +64,16 @@
         this.$store.dispatch("deleteList", listData);
       },
       handleTaskDragstart(data, event) {
-				event.stopPropagation();
-			},
-			handleDrop(task) {
+        event.stopPropagation();
+      },
+      handleDrop(task) {
         task.oldListId = task.listId
         task.listId = this.listData._id
         this.over = false;
         this.$store.dispatch("updateTask", task)
-				// alert(`You dropped with task: ${JSON.stringify(task)}`);
-			},
-		},
+        // alert(`You dropped with task: ${JSON.stringify(task)}`);
+      },
+    },
 
     props: ["listData"],
 
@@ -90,5 +86,4 @@
   };
 </script>
 <style scoped>
-  
 </style>

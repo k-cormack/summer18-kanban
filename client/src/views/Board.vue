@@ -3,9 +3,9 @@
     <h1>{{board.title}}</h1>
     <h5>{{board.description}}</h5>
     <div>
-    <button @click="logout">LOGOUT</button>
-    <button @click="goToBoards">BOARDS</button>
-  </div>
+      <button @click="logout">LOGOUT</button>
+      <button @click="goToBoards">BOARDS</button>
+    </div>
     <hr>
     <form @submit.prevent="addList">
       <input type="text" placeholder="title" v-model="newList.title" required>
@@ -14,7 +14,7 @@
     </form>
     <div>
       <List class="col-6" v-for="list in lists" :listData='list' :key="list._id" />
-      <!-- <button @click="deleteList(list._id)">Delete List</button> -->
+      <button class="delete-button" @click="deleteList(list._id)">Delete List</button>
     </div>
   </div>
 </template>
