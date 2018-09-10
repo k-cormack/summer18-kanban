@@ -3,17 +3,18 @@
     <h1>{{board.title}}</h1>
     <h5>{{board.description}}</h5>
     <div>
-    <button @click="logout">LOGOUT</button>
-    <button @click="goToBoards">BOARDS</button>
-  </div>
+      <button @click="logout">LOGOUT</button>
+      <button @click="goToBoards">BOARDS</button>
+    </div>
     <hr>
     <form @submit.prevent="addList">
       <input type="text" placeholder="title" v-model="newList.title" required>
       <input type="text" placeholder="description" v-model="newList.description" required>
       <button type="submit">Create New List</button>
     </form>
-    <div>
-      <List class="col-6" v-for="list in lists" :listData='list' :key="list._id" />
+    <hr>
+    <div class="row justify-content-center">
+      <List class="col-3" v-for="list in lists" :listData='list' :key="list._id" />
       <!-- <button @click="deleteList(list._id)">Delete List</button> -->
     </div>
   </div>

@@ -1,30 +1,28 @@
 <template>
   <div class="list">
     <hr>
-    <!-- <h2>
-      Lists
-    </h2> -->
-    <h3>{{listData.title}}</h3>
-    <!-- <h5>{{listData.description}}</h5> -->
-    <button @click="deleteList(listData)">Delete List</button>
-
-    <form @submit.prevent="addTask">
-      <input type="text" placeholder="description" v-model="newTask.description" required>
-      <button type="submit">Create New Task</button>
-    </form>
+    
+    <Drop class="drop"
+      :class="{ over }"
+      @dragover="over = true"
+      @dragleave="over = false"
+      @drop="handleDrop">
+        
+        <h3>{{listData.title}}</h3>
+        <!-- <h5>{{listData.description}}</h5> -->
+        <button @click="deleteList(listData)">Delete List</button>
+    
+        <form @submit.prevent="addTask">
+          <input type="text" placeholder="description" v-model="newTask.description" required>
+          <button type="submit">Create New Task</button>
+        </form>
+    </Drop>
 
     <Drag class="drag" :transferData="{ example: 'nested', position: 'list'}">
       <Drag class="drag" v-for="task in tasks" @dragstart="handleTaskDragstart" :transferData="task">
-        <Task class="col-3"  :taskData='task' :key="task._id"/>
+        <Task class=""  :taskData='task' :key="task._id"/>
       </Drag>
     </Drag>
-    <Drop class="drop"
-			:class="{ over }"
-			@dragover="over = true"
-			@dragleave="over = false"
-			@drop="handleDrop">
-				drop here
-		</Drop>
 
   </div>
 </template>
@@ -90,5 +88,8 @@
   };
 </script>
 <style scoped>
+  .list {
+    background-color: gray
+  }
   
 </style>

@@ -1,14 +1,18 @@
 <template>
-    <div class="task">
-        <h4>{{taskData.description}}</h4>
-        <button @click="deleteTask()">Delete Task</button>
-        <form @submit.prevent="addComment">
-            <input type="text" placeholder="comment" v-model="newComment.description" required>
-            <button type="submit">Add Comment</button>
-        </form>
-        <div class="col-3" v-for="comment in taskData.comments" :key="comment._id">
-            <p>{{comment.description}}</p>
-            <button @click="deleteComment(comment._id)">Delete Comment</button>
+    <div class="task card">
+        <div class="card-body task-body">
+            <h4>{{taskData.description}}</h4>
+            <button @click="deleteTask()">Delete Task</button>
+            <form @submit.prevent="addComment">
+                <input type="text" placeholder="comment" v-model="newComment.description" required>
+                <button type="submit">Add Comment</button>
+            </form>
+        </div>
+        <div class="comment card" v-for="comment in taskData.comments" :key="comment._id">
+            <div class="card-body comment-body">
+                <p>{{comment.description}}</p>
+                <button @click="deleteComment(comment._id)">Delete Comment</button>
+            </div>
         </div>
     </div>
 </template>
@@ -55,4 +59,11 @@
     };
 </script>
 <style scoped>
+    .task-body {
+        background-color: coral
+    }
+    .comment-body {
+        background-color: rgba(128, 128, 128, 0.486);
+        margin-top: 8px;
+    }
 </style>
