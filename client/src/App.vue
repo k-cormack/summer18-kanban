@@ -22,8 +22,8 @@
 
 
 <!-- 
-  lightest beige: #f0ece2
-2nd beige: #dfd3c3
-tan: #c7b198
-navy: #596e79 
+lightseafoam: #f4f9f4
+mint: #c4e3cb
+lightgreen: #8aae92
+charcoal: #616161 
 -->
