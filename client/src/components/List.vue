@@ -9,7 +9,7 @@
       @drop="handleDrop">
         
         <h3>{{listData.title}}</h3>
-        <!-- <h5>{{listData.description}}</h5> -->
+        <h5>{{listData.description}}</h5>
         <button @click="deleteList(listData)">Delete List</button>
     
         <form @submit.prevent="addTask">
@@ -33,7 +33,7 @@
 
   export default {
     name: "list",
-    data: function() {
+    data: function () {
       return {
         over: false,
         newTask: {
@@ -66,16 +66,16 @@
         this.$store.dispatch("deleteList", listData);
       },
       handleTaskDragstart(data, event) {
-				event.stopPropagation();
-			},
-			handleDrop(task) {
+        event.stopPropagation();
+      },
+      handleDrop(task) {
         task.oldListId = task.listId
         task.listId = this.listData._id
         this.over = false;
         this.$store.dispatch("updateTask", task)
-				// alert(`You dropped with task: ${JSON.stringify(task)}`);
-			},
-		},
+        // alert(`You dropped with task: ${JSON.stringify(task)}`);
+      },
+    },
 
     props: ["listData"],
 

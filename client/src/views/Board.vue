@@ -15,7 +15,6 @@
     <hr>
     <div class="row justify-content-center">
       <List class="col-3" v-for="list in lists" :listData='list' :key="list._id" />
-      <!-- <button @click="deleteList(list._id)">Delete List</button> -->
     </div>
   </div>
 </template>
