@@ -2,7 +2,10 @@
   <div class="board">
     <h1>{{board.title}}</h1>
     <h5>{{board.description}}</h5>
+    <div>
     <button @click="logout">LOGOUT</button>
+    <button @click="goToBoards">BOARDS</button>
+  </div>
     <hr>
     <form @submit.prevent="addList">
       <input type="text" placeholder="title" v-model="newList.title" required>
@@ -57,6 +60,9 @@
         this.$store.dispatch("addList", this.newList);
 
         this.newList = { title: "", description: "", boardId: this.boardId };
+      },
+      goToBoards() {
+        this.$store.dispatch("goToBoards")
       },
       logout() {
         this.$store.dispatch("logout")

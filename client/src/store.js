@@ -78,6 +78,9 @@ export default new Vuex.Store({
         
       })
     },
+    goToBoards() {
+      router.push({ name: 'boards'})
+    },
 
     //BOARDS
     getBoards({ commit, dispatch }) {
