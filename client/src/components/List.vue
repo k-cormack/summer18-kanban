@@ -8,10 +8,12 @@
         <h3>{{listData.title}}</h3>
         <h5>{{listData.description}}</h5>
         <button @click="deleteList(listData)">Delete List</button>
+        <hr>
     
         <form @submit.prevent="addTask">
           <input type="text" placeholder="New Task" v-model="newTask.description" required>
-          <button type="submit">Create New Task</button>
+          <button class="addTask" type="submit">Create New Task</button>
+          <hr>
         </form>
         
         <Drag class="drag" :transferData="{ example: 'nested', position: 'list'}">
@@ -88,7 +90,11 @@
     background-color: #8aae92;
     min-height: 50vh;
     margin: 10px;
-    padding-bottom: 10px
+    padding-bottom: 10px;
+    border-radius: 10px;
+  }
+  .addTask {
+    margin-top: 5px
   }
   
 </style>

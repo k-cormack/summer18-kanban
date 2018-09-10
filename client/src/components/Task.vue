@@ -3,13 +3,14 @@
         <div class="card-body task-body">
             <h4>{{taskData.description}}</h4>
             <button @click="deleteTask()">Delete Task</button>
+            <hr>
             <form @submit.prevent="addComment">
                 <input type="text" placeholder="comment" v-model="newComment.description" required>
-                <button type="submit">Add Comment</button>
+                <button class="addComment" type="submit">Add Comment</button>
             </form>
         </div>
-        <div class="comment card" v-for="comment in taskData.comments" :key="comment._id">
-            <div class="card-body comment-body">
+        <div class="comment" v-for="comment in taskData.comments" :key="comment._id">
+            <div class="comment-body">
                 <p>{{comment.description}}</p>
                 <button @click="deleteComment(comment._id)">Delete Comment</button>
             </div>
@@ -61,6 +62,9 @@
     }
     .comment-body {
         background-color: #c4e3cb8e;
-        
+        padding-bottom: 5px        
+    }
+    .addComment {
+        margin-top: 5px
     }
 </style>

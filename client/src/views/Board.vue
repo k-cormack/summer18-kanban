@@ -2,18 +2,22 @@
   <div class="board">
     <h1>{{board.title}}</h1>
     <h5>{{board.description}}</h5>
-    <div>
-      <button @click="logout">LOGOUT</button>
-      <button @click="goToBoards">BOARDS</button>
+    <div class="row">
+      <div class="col-6">
+        <button @click="goToBoards">BOARDS</button>
+      </div>
+      <div class="col-6">
+        <button @click="logout">LOGOUT</button>
+      </div>
     </div>
     <hr>
     <form @submit.prevent="addList">
-      <input type="text" placeholder="title" v-model="newList.title" required>
-      <input type="text" placeholder="description" v-model="newList.description" required>
-      <button type="submit">Create New List</button>
+      <input class="newList1" type="text" placeholder="New List" v-model="newList.title" required>
+      <input class="newList2" type="text" placeholder="Description" v-model="newList.description" required>
+      <button class="submit" type="submit">Create New List</button>
     </form>
     <hr>
-    
+
     <div class="row justify-content-center">
       <List class="col-3" v-for="list in lists" :listData='list' :key="list._id" />
     </div>
@@ -81,4 +85,10 @@
   };
 </script>
 <style scoped>
+  .newList1 {
+    margin-right: 5px
+  }
+  .newList2 {
+    margin-right: 5px
+  }
 </style>
