@@ -1,15 +1,19 @@
 <template>
-  <div class="boards">
-    <button @click="logout">LOGOUT</button>
-    WELCOME TO THE BOARDS!!!
-    <form @submit.prevent="addBoard">
-      <input type="text" placeholder="title" v-model="newBoard.title" required>
-      <input type="text" placeholder="description" v-model="newBoard.description">
-      <button type="submit">Create Board</button>
-    </form>
-    <div v-for="board in boards" :key="board._id">
-      <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
-      <button @click="deleteBoard(board._id)">Delete Board</button>
+  <div class="row boards">
+    <div class="col-12">
+      <button @click="logout">LOGOUT</button>
+      <h4>
+        WELCOME TO THE BOARDS!!!
+      </h4>
+      <form @submit.prevent="addBoard">
+        <input type="text" placeholder="title" v-model="newBoard.title" required>
+        <input type="text" placeholder="description" v-model="newBoard.description">
+        <button type="submit">Create Board</button>
+      </form>
+      <div v-for="board in boards" :key="board._id">
+        <router-link :to="{name: 'board', params: {boardId: board._id}}">{{board.title}}</router-link>
+        <button @click="deleteBoard(board._id)">Delete Board</button>
+      </div>
     </div>
   </div>
 </template>
@@ -56,3 +60,10 @@
 
   };
 </script>
+<style scoped>
+  .boards {
+
+    font-size: 1.75rem;
+
+  }
+</style>

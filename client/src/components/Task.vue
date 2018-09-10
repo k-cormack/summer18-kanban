@@ -34,10 +34,7 @@
                 this.$router.push({ name: "login" });
             }
         },
-        mounted() {
-            this.$store.dispatch('getTasks', this.listId);
-            // this.$store.dispatch('getComments', { taskId: this.taskData._id })
-        },
+  
         methods: {
             addComment() {
                 this.$store.dispatch("addComment", { data: this.newComment, listId: this.taskData.listId });

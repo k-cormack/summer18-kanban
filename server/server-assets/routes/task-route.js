@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
     })
     .catch(err => {
       res.status(400).send(err)
-      next()
+      
     })
 })
 
@@ -25,7 +25,7 @@ router.post('/', (req, res, next) => {
     })
     .catch(err => {
       res.status(400).send(err)
-      next()
+      
     })
 })
 
@@ -40,7 +40,7 @@ router.put('/:id', (req, res, next) => {
       board.update(req.body, (err) => {
         if (err) {
           res.status(400).send(err)
-          next()
+          
           return
         }
         res.send("Successfully Updated")
@@ -48,7 +48,7 @@ router.put('/:id', (req, res, next) => {
     })
     .catch(err => {
       res.status(400).send(err)
-      next()
+      
     })
 })
 
@@ -90,7 +90,7 @@ router.get('/:taskId/comments', (req, res, next) => {
     })
     .catch(err => {
       res.status(400).send(err)
-      next()
+      
     })
 })
 

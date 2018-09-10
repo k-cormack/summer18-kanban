@@ -1,8 +1,5 @@
-<template>
-  <div class="list">
-    <hr>
-    
-    <Drop class="drop"
+<template>    
+    <Drop class="drop list"
       :class="{ over }"
       @dragover="over = true"
       @dragleave="over = false"
@@ -16,15 +13,14 @@
           <input type="text" placeholder="New Task" v-model="newTask.description" required>
           <button type="submit">Create New Task</button>
         </form>
-    </Drop>
+        
+        <Drag class="drag" :transferData="{ example: 'nested', position: 'list'}">
+          <Drag class="drag" v-for="task in tasks" @dragstart="handleTaskDragstart" :transferData="task">
+            <Task class=""  :taskData='task' :key="task._id"/>
+          </Drag>
+        </Drag>
+      </Drop>
 
-    <Drag class="drag" :transferData="{ example: 'nested', position: 'list'}">
-      <Drag class="drag" v-for="task in tasks" @dragstart="handleTaskDragstart" :transferData="task">
-        <Task class=""  :taskData='task' :key="task._id"/>
-      </Drag>
-    </Drag>
-
-  </div>
 </template>
 
 <script>
