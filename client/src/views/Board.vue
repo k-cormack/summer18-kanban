@@ -60,6 +60,8 @@
       },
       logout() {
         this.$store.dispatch("logout")
+        this.$store.state.user._id = ""
+        this.$store.state.boards = []
       }
 
     },
