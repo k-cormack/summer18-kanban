@@ -2,6 +2,7 @@
   <div class="board">
     <h1>{{board.title}}</h1>
     <h5>{{board.description}}</h5>
+    <button @click="logout">LOGOUT</button>
     <hr>
     <form @submit.prevent="addList">
       <input type="text" placeholder="title" v-model="newList.title" required>
@@ -57,6 +58,9 @@
 
         this.newList = { title: "", description: "", boardId: this.boardId };
       },
+      logout() {
+        this.$store.dispatch("logout")
+      }
 
     },
     props: ["boardId"],

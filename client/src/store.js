@@ -71,10 +71,11 @@ export default new Vuex.Store({
           router.push({ name: 'boards' })
         })
     },
-    logout({commit, dispatch}, userId) {
-      auth.delete('logout', userId)
+    logout({commit, dispatch}) {
+      auth.delete('logout')
       .then(res => {
-        commit('setUser', res.data)
+        debugger
+        commit('setUser', null)
         
       })
     },
